@@ -36,7 +36,3 @@ class UserDestroyAPIView(generics.DestroyAPIView):
 
     queryset = User.objects.all()
 
-
-from django.shortcuts import render
-
-# Create your views here.
