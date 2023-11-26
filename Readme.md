@@ -50,14 +50,8 @@ https://t.me/BotFather
 
 6. Настройка переменных окружения
 В папке config/ создать файл .env, в который записать свои данные:
-
-DJANGO_SECRET_KEY=
-PSQL_DB_NAME=atomic_habits
-PSQL_USER=
-PSQL_PASSWORD=
-CELERY_BROKER_URL=
-CELERY_RESULT_BACKEND=
-CELERY_TASK_TRACK_STARTED=1
+DB_NAME=
+DB_USER_PASSWORD=
 TELEGRAM_BOT_API_KEY=
 TELEGRAM_CHAT_ID=
 7. Применение миграций

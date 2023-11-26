@@ -3,13 +3,12 @@ import requests
 
 from celery import shared_task
 
-from config.settings import TELEGRAM_BOT_API_KEY
+from config.settings import TELEGRAM_BOT_API_KEY, TELEGRAM_CHAT_ID
 from habits.models import Habit
 
 
-@shared_task(name='send_telegram_message')
+@shared_task
 def send_telegram_message():
-
     current_date = datetime.now().date()
     current_time = datetime.now().time().strftime('%H:%M')
 
@@ -24,7 +23,8 @@ def send_telegram_message():
             if habit_start_time == current_time:
                 url = f'https://api.telegram.org/bot{TELEGRAM_BOT_API_KEY}/sendMessage'
                 param = {
-                    "text": f'Привет! {str(habit)}'
+                    "text": f'Привет! {str(habit)}',
+                    "chat_id": TELEGRAM_CHAT_ID
                 }
                 response = requests.get(url, param)
                 print(f'Сообщение в телеграм-бот отправлено. Подробнее:{response.json()}')
