@@ -35,7 +35,7 @@ class HabitTestCase(APITestCase):
             'user': self.user
         }
         response = self.client.post(
-            '/habit/create/',
+            '/habits/habit/create/',
             data=data
         )
         self.assertEqual(
@@ -65,7 +65,7 @@ class HabitTestCase(APITestCase):
 
     def test_list_habit(self):
         response = self.client.get(
-            '/habit/'
+            '/habits/habit/'
         )
         self.assertEqual(
             response.status_code,
@@ -91,7 +91,7 @@ class HabitTestCase(APITestCase):
 
     def test_retrieve_habit(self):
         response = self.client.get(
-            f'/habit/{self.habit.id}/'
+            f'/habits/habit/{self.habit.id}/'
         )
         self.assertEqual(
             response.status_code,
@@ -123,7 +123,7 @@ class HabitTestCase(APITestCase):
             'time_to_complete': self.habit.time_to_complete
         }
         response = self.client.patch(
-            f'/habit/update/{self.habit.id}/',
+            f'/habits/habit/update/{self.habit.id}/',
             data=data
         )
         self.assertEqual(
@@ -150,18 +150,12 @@ class HabitTestCase(APITestCase):
 
     def test_destroy_habit(self):
         response = self.client.delete(
-            f'/habit/delete/{self.habit.id}/',
+            f'/habits/habit/delete/{self.habit.id}/',
         )
         self.assertEqual(
             response.status_code,
             status.HTTP_204_NO_CONTENT
         )
-
-
-from rest_framework import status
-from rest_framework.test import APITestCase, APIClient
-from habits.models import Habit
-from users.models import User
 
 
 class ValidatorsTestCase(APITestCase):
@@ -196,7 +190,7 @@ class ValidatorsTestCase(APITestCase):
             'reward': 'test_reward_val_1'
         }
         response = self.client.post(
-            path='/habit/create/',
+            path='/habits/habit/create/',
             data=data
         )
         self.assertEquals(
@@ -223,7 +217,7 @@ class ValidatorsTestCase(APITestCase):
             'reward': 'test_reward_val_2'
         }
         response = self.client.post(
-            path='/habit/create/',
+            path='/habits/habit/create/',
             data=data
         )
         self.assertEquals(
@@ -250,7 +244,7 @@ class ValidatorsTestCase(APITestCase):
             'related_habit': self.habit.id
         }
         response = self.client.post(
-            path='/habit/create/',
+            path='/habits/habit/create/',
             data=data
         )
         self.assertEquals(
@@ -277,7 +271,7 @@ class ValidatorsTestCase(APITestCase):
             'is_pleasant': True
         }
         response = self.client.post(
-            path='/habit/create/',
+            path='/habits/habit/create/',
             data=data
         )
         self.assertEquals(
@@ -303,7 +297,7 @@ class ValidatorsTestCase(APITestCase):
             'reward': 'test_reward_5',
         }
         response = self.client.post(
-            path='/habit/create/',
+            path='/habits/habit/create/',
             data=data
         )
         self.assertEquals(

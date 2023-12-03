@@ -86,7 +86,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('DB_NAME'),
         'USER': 'postgres',
-        'PASSWORD': config('DB_USER_PASSWORD')
+        'PASSWORD': config('DB_USER_PASSWORD'),
+        'HOST': 'db'
     }
 }
 
@@ -169,10 +170,10 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_BEAT_SCHEDULE = {
     'send_telegram_message': {
-        'task': 'habits.tasks.send_telegram_message',
+        'task': 'send_message',
         'schedule': timedelta(minutes=1)
     },
 }
 
 TELEGRAM_BOT_API_KEY = config('TELEGRAM_BOT_API_KEY')
-
+TELEGRAM_CHAT_ID = config('TELEGRAM_CHAT_ID')
